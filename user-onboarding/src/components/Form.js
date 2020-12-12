@@ -67,13 +67,13 @@ export default function Form() {
         .post('https://reqres.in/api/users' , formState )
         .then((response) =>{
             setData(response.data);
+            usersData.push(response.data);
             setFormState({
                 name: "",
                 email: "",
                 password: "",
                 terms: false
             });
-            usersData.push(response.data);
         })     
         .catch((error) => {
             console.log(error);
@@ -121,7 +121,7 @@ export default function Form() {
                 id='terms'
                 type='checkbox'
                 name='terms'
-                value={formState.terms}
+                checked={formState.terms}
                 onChange ={changeInput}
             />
             {errors.terms.length > 0 ? <p className='error'>{errors.terms}</p> : null}
